@@ -1,6 +1,7 @@
 "use client"
 
 import * as React from "react"
+import { Suspense } from "react";
 import {
   Home,
   PieChart,
@@ -83,7 +84,9 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         <TeamSwitcher teams={data.teams}/>
       </SidebarHeader>
       <SidebarContent>
-        <NavMain items={items} />
+        <Suspense fallback={<div className="p-4 text-xs text-muted-foreground">Loading...</div>}>
+          <NavMain items={items} />
+        </Suspense>
       </SidebarContent>
       <SidebarFooter>
         <NavUser user={data.user} />
